@@ -21,78 +21,82 @@ threes_rows.forEach((row) => {
 })
 
 let threes_coordinates = {}
+let threes_view = {}
 
 for (let index = 0; index < threes_rows.length; index++) {
   for (let j_index = 0; j_index < threes_rows[index].length; j_index++) {
-    threes_coordinates[index + '.' + j_index] = 0
+    threes_coordinates[index + '.' + j_index] = Number.parseInt(
+      threes_rows[j_index][index]
+    )
+    threes_view[index + '.' + j_index] = 0
   }
 }
-
-console.log(threes_coordinates)
 
 let row_visibles = {}
 let column_visibles = {}
 let line = 0
 let max = 0
 
-// ROW VISIBLES
-for (let i = 0; i < threes_rows.length; i++) {
-  //row_visibles = { ...row_visibles, [i]: [] }
-  let taller = -1
-  let visible_in_range = []
-  threes_rows[i].split('').forEach((tree, index) => {
-    if (Number.parseInt(tree) > taller) {
-      const y = index
-      threes_coordinates[i + '.' + y] += Number.parseInt(y)
-      taller = Number.parseInt(tree)
-    }
-  })
-  // taller = -1
-  // threes_rows[i]
-  //   .split('')
-  //   .reverse()
-  //   .forEach((tree, index) => {
-  //     if (Number.parseInt(tree) > taller) {
-  //       const y = 98 - index
-  //       row_visibles[i].push(y + '.' + i), (taller = Number.parseInt(tree))
-  //     }
-  //   })
-}
+Object.entries(threes_coordinates).forEach(([three, value]) => {
+  const threeX = three.split('.')[0]
+  const threeY = three.split('.')[1]
+  if (threeX == 0 || threeX == 98 || threeY == 0 || threeY == 98) return
+  const left_part = threes_rows[threeY].slice(0, threeX).split('').reverse()
+  const right_part = threes_rows[threeY].slice(Number.parseInt(threeX) + 1)
+  const upper_part = threes_columns_object[threeX].slice(0, threeY).split('').reverse()
+  const lower_part = threes_columns_object[threeX].slice(Number.parseInt(threeY) + 1)
+  let left_part_view = -1
+  let left_part_i = 0
+  let left_threes = 0
+  let left_length = left_part.length
+  while (left_length > 0 && left_part_view < value) {
+    left_length--
+    left_threes++
+    left_part_view = left_part[left_part_i]
+    left_part_i++
+  }
+  let right_part_view = -1
+  let right_part_i = 0
+  let right_threes = 0
+  let right_length = right_part.length
+  while (right_length > 0 && right_part_view < value) {
+    right_length--
+    right_threes++
+    right_part_view = right_part[right_part_i]
+    right_part_i++
+  }
+  let upper_part_view = -1
+  let upper_part_i = 0
+  let upper_threes = 0
+  let upper_length = upper_part.length
+  while (upper_length > 0 && upper_part_view < value) {
+    upper_length--
+    upper_threes++
+    upper_part_view = upper_part[upper_part_i]
+    upper_part_i++
+  }
+  let lower_part_view = -1
+  let lower_part_i = 0
+  let lower_threes = 0
+  let lower_length = lower_part.length
+  while (lower_length > 0 && lower_part_view < value) {
+    lower_length--
+    lower_threes++
+    lower_part_view = lower_part[lower_part_i]
+    lower_part_i++
+  }
+  console.log(three, left_threes, upper_threes, right_threes, lower_threes, right_length)
+  //console.log(three, value, upper_part, lower_part)
+  threes_view[threeX + '.' + threeY] =
+    left_threes * right_threes * upper_threes * lower_threes
+})
 
-console.log(threes_coordinates)
-// const threes_columns = Object.values(threes_columns_object)
-// // COLUMN VISIBLES
-// for (let i = 0; i < threes_columns.length; i++) {
-//   column_visibles = { ...column_visibles, [i]: [] }
-//   let taller = -1
-//   threes_columns[i].split('').forEach((tree, index) => {
-//     if (Number.parseInt(tree) > taller) {
-//       const y = index
-//       column_visibles[i].push(i + '.' + y), (taller = Number.parseInt(tree))
-//     }
-//   })
-//   taller = -1
-//   threes_columns[i]
-//     .split('')
-//     .reverse()
-//     .forEach((tree, index) => {
-//       if (Number.parseInt(tree) > taller) {
-//         const y = 98 - index
-//         column_visibles[i].push(i + '.' + y), (taller = Number.parseInt(tree))
-//       }
-//     })
-// }
+console.log(Math.max(...Object.values(threes_view)))
 
-// console.log('row', row_visibles)
-// console.log('column', column_visibles)
-
-//console.log(row_visibles, column_visibles)
-
-const visible_in_row = Object.values(row_visibles)
-const visible_in_col = Object.values(column_visibles)
-
-//console.log(visible_in_row, visible_in_col)
-
-let visibles = new Set([...visible_in_row.flat(), ...visible_in_col.flat()].sort())
-
-console.log(visibles)
+/**
+ * SUBMISSIONS :
+ * 143
+ * 1050000 too high
+ * 6247500
+ * 972405 too high
+ */
