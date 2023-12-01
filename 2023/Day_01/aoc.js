@@ -4,7 +4,7 @@
 const input = document.querySelector('pre').textContent
 const response_1 = document.querySelector('#response_1')
 const response_2 = document.querySelector('#response_2')
-const numRegex = new RegExp('^[0-9]$')
+const numRegex = new RegExp('[0-9]')
 
 const sum = input.split('\n').reduce((acc, cur) => {
   const text = cur.split('')
