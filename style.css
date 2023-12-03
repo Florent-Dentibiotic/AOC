@@ -1,0 +1,19 @@
+body {
+  padding: 2rem;
+  text-align: center;
+  color: #00cc00;
+  background-color: #0f0f23;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  display: flex;
+}
+
+a {
+  color: #00cc00;
+  text-decoration: none;
+}
