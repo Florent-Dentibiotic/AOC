@@ -2,7 +2,7 @@ body {
   padding: 2rem;
   color: #00cc00;
   background-color: #0f0f23;
-  width: 70rem;
+  max-width: 70rem;
   margin: auto;
 }
 
