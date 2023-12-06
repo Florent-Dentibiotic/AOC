@@ -37,11 +37,11 @@ const results = races
       ),
       max: defineLastPositiveResult(
         parseInt(race.time),
-        37250000,
+        37244000,
         parseInt(race.distance)
       ),
     }
   })
   .reduce((acc, cur) => acc * (cur.max - cur.min + 1), 1)
 
-console.log(results)
+response.textContent = results
