@@ -23,8 +23,10 @@ for (let i = 0; i < games.length; i++) {
 
 winning_copies.map((game, index) => {
   for (let i = 0; i < game; i++) {
-    scratchcards[i + index + 1] += 1 * scratchcards[index]
+    scratchcards[i + index + 1] += scratchcards[index]
   }
 })
+
+console.log(scratchcards)
 
 response.textContent = scratchcards.reduce((acc, cur) => acc + cur, 0)
