@@ -7,6 +7,7 @@ const response = document.querySelector('#response')
 const number_regex = new RegExp('[0-9]+', 'g')
 
 const nextValue = (previous, rules, rulesIndex, ruleIndex) => {
+  console.log(rulesIndex, previous)
   if (rules.length === rulesIndex) return previous
   if (rules[rulesIndex].length === ruleIndex)
     return nextValue(previous, rules, rulesIndex + 1, 0)
@@ -32,7 +33,7 @@ const defineRules = (input) => {
   return rules
 }
 
-const groups = input.split('\n\n')
+const groups = exemple.split('\n\n')
 
 const seeds = groups.shift().match(number_regex)
 
