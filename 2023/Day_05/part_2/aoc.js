@@ -13,18 +13,24 @@ const seeds = groups.shift().match(number_regex)
 const defineRules = (input) => {
   const lines = input.split('\n')
   const rule_name = lines.shift()
-  const rules = lines.map((line) => {
-    const map = line.match(number_regex)
-    return [Number(map[0]), Number(map[1]), Number(map[1]) + Number(map[2])]
-  })
+  const rules = lines.map((line) => line.match(number_regex))
   return rules
 }
 
 const rules = groups.map((group) => defineRules(group))
 
+let values = []
+
+for (let i = 0; i < rules.length; i++) {
+  values.push([])
+}
+
 const nextValue = (previous, rules, rulesIndex, ruleIndex) => {
-  console.log(rulesIndex, previous)
-  if (rules.length === rulesIndex) return previous
+  //console.log(rulesIndex)
+  if (rules.length === rulesIndex) {
+    return previous
+  }
+  !values[rulesIndex].includes(previous) && values[rulesIndex].push(previous)
   if (rules[rulesIndex].length === ruleIndex)
     return nextValue(previous, rules, rulesIndex + 1, 0)
   currentRules = rules[rulesIndex]
@@ -47,4 +53,18 @@ const fineTheSmallestLocation = (current, rules, rulesIndex, ruleIndex) => {
   return fineTheSmallestLocation(current, rules, rulesIndex, ruleIndex + 1)
 }
 
+let newSeeds = []
+
+for (let i = 0; i < 14; i++) {
+  newSeeds.push(79 + i)
+}
+for (let i = 0; i < 13; i++) {
+  newSeeds.push(55 + i)
+}
+
+const location_list = newSeeds.map((seed) => nextValue(seed, rules, 0, 0))
+//.sort((a, b) => a - b)
+
 console.log(seeds, rules)
+
+console.log(values, location_list)

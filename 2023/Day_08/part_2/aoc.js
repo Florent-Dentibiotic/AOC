@@ -69,6 +69,6 @@ function pgcd(a, b) {
 
 const results = Object.values(final_Z)
 const firstOccurence = results.map((result) => result[0])
-response.textContent = firstOccurence.reduce((acc, cur) => acc * (cur / 263))
+response.textContent = firstOccurence.reduce((acc, cur) => acc * (cur / path.length))
 
 //const multiples = [73, 43, 67, 79, 61, 59]
