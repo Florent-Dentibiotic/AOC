@@ -4,15 +4,6 @@
 const input = document.querySelector('pre').textContent
 const response = document.querySelector('#response')
 
-const rules = {
-  '|': 'NS',
-  '-': 'WE',
-  L: 'SE',
-  J: 'WN',
-  7: 'WN',
-  F: 'SE',
-}
-
 const define_new_direction = (grid, previous_position, direction) => {
   const new_position = {
     x: previous_position.x + direction.x,
@@ -48,7 +39,6 @@ const define_new_direction = (grid, previous_position, direction) => {
 }
 
 const loop_length = (grid, position, direction, step, start_position) => {
-  console.log(position, step)
   if (position.x === start_position.x && position.y === start_position.y && step > 1)
     return step
   const [new_position, new_direction] = define_new_direction(grid, position, direction)
@@ -65,3 +55,5 @@ const contestResponse = (input) => {
 }
 
 const solution = contestResponse(input.split('\n'))
+
+response.textContent = solution

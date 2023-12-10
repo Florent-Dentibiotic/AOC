@@ -10,15 +10,6 @@ const input_2 = document.querySelector('#input_2').textContent
 const response = document.querySelector('#response')
 const visualisation = document.querySelector('#visualisation')
 
-const rules = {
-  '|': 'NS',
-  '-': 'WE',
-  L: 'SE',
-  J: 'WN',
-  7: 'WN',
-  F: 'SE',
-}
-
 const define_new_direction = (grid, previous_position, direction) => {
   let new_position = {
     x: previous_position.x + direction.x,
