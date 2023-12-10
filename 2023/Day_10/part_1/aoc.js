@@ -1,5 +1,5 @@
 /**
- * AOC Day 1
+ * AOC Day 10
  */
 const input = document.querySelector('pre').textContent
 const response = document.querySelector('#response')
@@ -44,7 +44,6 @@ const define_new_direction = (grid, previous_position, direction) => {
     new_symbol === 'J' && (new_direction = { x: 0, y: -1 })
   }
 
-  //console.log("direction :", new_direction);
   return [new_position, new_direction]
 }
 
@@ -53,7 +52,6 @@ const loop_length = (grid, position, direction, step, start_position) => {
   if (position.x === start_position.x && position.y === start_position.y && step > 1)
     return step
   const [new_position, new_direction] = define_new_direction(grid, position, direction)
-  //console.log(new_position, new_direction);
   return loop_length(grid, new_position, new_direction, step + 1, start_position)
 }
 
@@ -63,10 +61,7 @@ const contestResponse = (input) => {
     line.indexOf('S') === -1 ? acc : (acc = { x: index, y: line.indexOf('S') })
   )
   const path = loop_length(grid, start_position, { x: -1, y: 0 }, 0, start_position)
-  console.log(path)
   return Math.floor(path / 2)
 }
 
 const solution = contestResponse(input.split('\n'))
-
-console.log(solution, input.split('\n')[0].length, input.split('\n').length)

@@ -1,5 +1,5 @@
 /**
- * AOC Day 1
+ * AOC Day 10
  */
 const exemple = document.querySelector('#exemple').textContent
 const exemple2 = document.querySelector('#exemple_2').textContent
@@ -62,18 +62,14 @@ const define_new_direction = (grid, previous_position, direction) => {
       ((new_direction = { x: 0, y: -1 }), (new_position = { ...new_position, d: 'L' }))
   }
   if (new_symbol === 'S') new_position = { ...new_position, d: 'U' }
-  //console.log('position :', new_position)
   return [new_position, new_direction]
 }
 
 let isInTheLoop = new Map()
 
 const loop_length = (grid, position, direction, step, start_position) => {
-  //if (position.x === 135) console.log(position, step)
-
   if (position.x === start_position.x && position.y === start_position.y && step > 1)
     return step
-  //console.log(position, direction)
   const [new_position, new_direction] = define_new_direction(grid, position, direction)
   isInTheLoop.set(`${new_position.x},${new_position.y}`, new_position.d)
   return loop_length(grid, new_position, new_direction, step + 1, start_position)
@@ -120,7 +116,6 @@ const insideTheLoop = (input) => {
         continue
       }
       const symbol_up = grid[x - 1][y]
-      const symbol_left = grid[x][y - 1]
       const loop_up = isInTheLoop.get(`${x - 1},${y}`)
       if (loop_up === 'R') {
         not_in_loop.set(`${x},${y}`, 1)
