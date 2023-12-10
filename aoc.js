@@ -16,4 +16,4 @@ const createYearLinks = (year, length = 25) => {
 
 createYearLinks(2015, 1)
 createYearLinks(2022, 12)
-createYearLinks(2023, 7)
+createYearLinks(2023, 10)
