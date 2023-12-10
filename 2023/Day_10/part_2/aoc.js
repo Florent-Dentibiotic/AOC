@@ -150,6 +150,16 @@ const create_grid_element = (content, color) => {
   visualisation.appendChild(div)
 }
 
+const symbols = {
+  F: '┌',
+  7: '┐',
+  J: '┘',
+  L: '└',
+  '-': '─',
+  '|': '│',
+  S: 'X',
+}
+
 const coloring_gird = (input) => {
   const grid = input.split('\n').map((line) => line.split(''))
   for (let x = 0; x < grid.length; x++) {
@@ -157,15 +167,16 @@ const coloring_gird = (input) => {
       const loopPoint = isInTheLoop.get(`${x},${y}`)
       //console.log(x, y, loopPoint)
       if (loopPoint) {
-        create_grid_element(grid[x][y], 'green')
+        let symbol = grid[x][y]
+        create_grid_element(symbols[grid[x][y]], 'green')
         continue
       }
       const outLoop = outside_loop.get(`${x},${y}`)
       if (outLoop) {
-        create_grid_element('o', 'blue')
+        create_grid_element('░', 'blue')
         continue
       }
-      create_grid_element('I', 'red')
+      create_grid_element('╳', 'red')
     }
   }
 }
