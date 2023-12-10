@@ -173,7 +173,7 @@ const coloring_gird = (input) => {
       }
       const outLoop = outside_loop.get(`${x},${y}`)
       if (outLoop) {
-        create_grid_element('░', 'blue')
+        create_grid_element('▢', 'blue')
         continue
       }
       create_grid_element('╳', 'red')
