@@ -48,6 +48,13 @@ const nextValue = (previous, rules, rulesIndex, ruleIndex) => {
   return nextValue(previous, rules, rulesIndex, ruleIndex + 1)
 }
 
+const nextIntervals = (intervals, rules_index) => {
+  console.log(intervals, rules[rules_index])
+  let unchanged = []
+  let changed = []
+  rules[rules_index].map((rule) => {})
+}
+
 const fineTheSmallestLocation = (current, rules, rulesIndex, ruleIndex) => {
   if (rules.length === rulesIndex) return current
   return fineTheSmallestLocation(current, rules, rulesIndex, ruleIndex + 1)
@@ -55,16 +62,12 @@ const fineTheSmallestLocation = (current, rules, rulesIndex, ruleIndex) => {
 
 let newSeeds = []
 
-for (let i = 0; i < 14; i++) {
-  newSeeds.push(79 + i)
-}
-for (let i = 0; i < 13; i++) {
-  newSeeds.push(55 + i)
-}
+newSeeds.push({ start: 79, end: 79 + 14 })
+newSeeds.push({ start: 55, end: 55 + 13 })
 
-const location_list = newSeeds.map((seed) => nextValue(seed, rules, 0, 0))
+const location_list = newSeeds.map((seed) => nextIntervals(seed, 0))
 //.sort((a, b) => a - b)
 
 console.log(seeds, rules)
 
-console.log(values, location_list)
+console.log(values)
