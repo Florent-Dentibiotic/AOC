@@ -3,3 +3,5 @@
  */
 const input = document.querySelector('pre').textContent
 const response = document.querySelector('#response')
+
+console.log(input.split('\n'))
