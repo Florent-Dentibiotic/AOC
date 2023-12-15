@@ -1,5 +1,5 @@
 /**
- * AOC Day 1
+ * AOC Day 15
  */
 const input = document.querySelector('#input').textContent
 const exemple = document.querySelector('#exemple').textContent
@@ -18,3 +18,5 @@ const define_result = (sequence, current_value, index) => {
 const results = entries.map((string) => define_result(string, 0, 0))
 
 response.textContent = results.reduce((acc, cur) => acc + cur, 0)
+
+console.log(define_result('rn', 0, 0))
