@@ -2,10 +2,11 @@
  * AOC Day 1
  */
 const input = document.querySelector('#input').textContent
+const input_2 = document.querySelector('#input_2').textContent
 const exemple = document.querySelector('#exemple').textContent
 const response = document.querySelector('#response')
 
-const grid = input.split('\n')
+const grid = input_2.split('\n')
 
 const directions = {
   U: (position) => (position = { ...position, y: position.y - 1 }),
@@ -71,6 +72,7 @@ const define_new_directions = (direction, encounter) => {
 }
 
 const light_path = (position, direction, encounters) => {
+  console.log(position, direction, encounters)
   const directions_array = energized.get(`${position.y},${position.x}`) ?? []
   if (directions_array.includes(direction)) {
     if (encounters.length === 0) {
@@ -143,4 +145,4 @@ const light_path = (position, direction, encounters) => {
 
 const energy = light_path({ x: -1, y: 0 }, 'R', [])
 
-console.log(energized)
+response.textContent = energized.size - 1
