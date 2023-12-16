@@ -18,9 +18,7 @@ const define_result = (sequence, current_value, index) => {
 const boxes = new Map()
 
 const minus_or_equal = (sequence, index) => {
-  //console.log(boxes, index)
   if (sequence.includes('=')) {
-    //console.log(sequence)
     const box_number = define_result(sequence.split('=')[0], 0, 0)
     let box = boxes.get(box_number)
 
@@ -30,14 +28,11 @@ const minus_or_equal = (sequence, index) => {
       ])
     } else {
       const box_index = box.findIndex((lens) => lens.label === sequence.split('=')[0])
-      //console.log(sequence.split('='), box_index)
       if (box_index !== -1) {
-        //console.log(sequence.split('='), box_index)
         box.splice(box_index, 1, {
           label: sequence.split('=')[0],
           lens: sequence.split('=')[1],
         })
-        //console.log(sequence.split('='), new_box)
         boxes.set(box_number, box)
       } else {
         box.push({
@@ -78,9 +73,9 @@ let result = 0
 
 boxes.forEach((el, index) => {
   const sum = el.map((cur, id) => Number(cur.lens) * (index + 1) * (id + 1), 1)
-  console.log(sum)
+
   sum.reduce((acc, cur) => acc + cur, 0)
   result += sum.reduce((acc, cur) => acc + cur, 0)
 })
 
-console.log(result)
+response.textContent = result
