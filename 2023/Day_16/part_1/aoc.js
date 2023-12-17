@@ -1,5 +1,5 @@
 /**
- * AOC Day 1
+ * AOC Day 16
  */
 const input = document.querySelector('#input').textContent
 const input_2 = document.querySelector('#input_2').textContent
